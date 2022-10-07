@@ -25,6 +25,13 @@ export const AuthProvider = ({children}) => {
             Cookies.remove('auth')
         }
     }
+    const logout = () => {
+        setAuth(false)
+        setUser({})
+        setToken('')
+        Cookies.remove('token')
+        Cookies.remove('auth')
+    }
 
     useEffect(()=>{
         if(Cookies.get('token') !== undefined && auth === false){
@@ -42,7 +49,8 @@ export const AuthProvider = ({children}) => {
             setToken,
             setAuth,
             setUser,
-            checkToken
+            checkToken,
+            logout
         }
     }
     return (
