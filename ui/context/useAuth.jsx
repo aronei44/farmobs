@@ -27,7 +27,7 @@ export const AuthProvider = ({children}) => {
     }
 
     useEffect(()=>{
-        if(Cookies.get('token') !== undefined){
+        if(Cookies.get('token') !== undefined && auth === false){
             checkToken(Cookies.get('token'))
         }
     },[])
@@ -41,7 +41,8 @@ export const AuthProvider = ({children}) => {
         action: {
             setToken,
             setAuth,
-            setUser
+            setUser,
+            checkToken
         }
     }
     return (
