@@ -6,8 +6,9 @@ const checkUrl = (request, url) => {
 
 export function middleware(request) {
   if(checkUrl(request, '/dashboard')){
-    //     return NextResponse.redirect(new URL('/auth/login', request.url))
-    console.log('ini jalan')
+    if(!request.cookies.get('auth')){
+      return NextResponse.redirect(new URL('/auth/login', request.url))
+    }
   }
   if(checkUrl(request, '/auth')){
     if(request.cookies.get('auth')){
